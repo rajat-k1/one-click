@@ -1,0 +1,28 @@
+/* SidePane.module.css */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    height: 100%;
+    background-color: #f4f4f4; /* Light grey background */
+    padding: 20px;
+}
+
+.logo {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.logo span {
+    font-size: 16px;
+    color: #333; /* Dark grey color for text */
+}

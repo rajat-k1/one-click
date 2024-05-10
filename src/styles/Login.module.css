@@ -1,0 +1,78 @@
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../../public/images/background.jpg'); /* Update with your image path */
+    background-size: cover;
+    padding-right: 200px; /* Adds padding on the right for some spacing from the edge */
+}
+
+.loginBox {
+    width: 340px; /* Adjust width as necessary */
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.socialButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    background: #fff; /* Set background colors based on brand guidelines */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    color: black;
+}
+
+.inputField {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.button {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+.footerText {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+
+.forgotPassword {
+    margin-top: 5px;
+    text-align: right;
+}
+
+.forgotPassword a {
+    color: #0077cc; /* Example link color, adjust as needed */
+    text-decoration: none;
+}
+
+.logoContainer {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translateY(-50%);
+}
+
