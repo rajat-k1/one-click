@@ -1,0 +1,68 @@
+project-root/
+├── src/
+│   ├── app/
+│   │   ├── about/
+│   │   │   └── page.js
+│   │   ├── dashboard/
+│   │   │   ├── page.js
+│   │   │   ├── CommentsChart.js
+│   │   │   ├── FollowersChart.js
+│   │   │   ├── LineChart.js
+│   │   │   ├── loader.js
+│   │   │   ├── NumberCounter.js
+│   │   │   ├── SavesChart.js
+│   │   │   ├── SharesChart.js
+│   │   │   ├── SidePane.js
+│   │   │   └── ViewsChart.js
+│   │   ├── login/
+│   │   │   ├── page.js
+│   │   │   └── middleware.js
+│   │   ├── post/
+│   │   │   └── page.js
+│   │   ├── layout.js
+│   │   └── page.js
+│   ├── components/
+│   │   ├── client/
+│   │   │   └── Button.client.js
+│   │   └── Navigation.js
+│   ├── pages/
+│   │   ├── api/
+│   │   │   ├── auth/
+│   │   │   │   ├── callback.js
+│   │   │   │   ├── login.js
+│   │   │   │   └── logout.js
+│   ├── styles/
+│   │   ├── Navigation.module.css
+│   │   ├── Dashboard.module.css
+│   │   ├── Login.module.css
+│   │   ├── Dashboard.module.css
+│   │   ├── PostPage.module.css
+│   │   └── Dashboard.module.css
+│   ├── utils/
+│   │   └── auth0.js
+├── public/
+│   │   ├── next.svg
+│   │   └── vercel.svg
+│   └── images/
+│       ├── rajat-dp.png
+│       ├── shaishav-dp.png
+│       ├── apple-icon.png
+│       ├── background.jpg
+│       ├── facebook-logo.png
+│       ├── google-icon.png
+│       ├── instagram-logo.png
+│       ├── one-click-logo.png
+│       ├── post-icon.png
+│       └── aziz-dp.png
+├── package.json
+├── package-lock.json
+├── .env.local
+├── .eslintrc.json
+├── .gitignore
+├── jsconfig.json
+├── LICENSE
+├── next.config.mjs
+├── postcss.config.mjs
+├── README.md
+├── tailwind.config.js
+└── ...

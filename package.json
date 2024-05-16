@@ -1,5 +1,5 @@
 {
-  "name": "my-instagram-analytics",
+  "name": "one-click",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
+    "axios": "^1.6.8",
+    "connect-mongo": "^5.1.0",
+    "express-session": "^1.18.0",
     "next": "^14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "twitter-api-v2": "^1.16.4"
   },
   "devDependencies": {
     "eslint": "^8",

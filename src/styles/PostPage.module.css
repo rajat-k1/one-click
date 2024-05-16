@@ -1,0 +1,106 @@
+/* src/styles/PostPage.module.css */
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.postBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.iconFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px; /* Adjust height to fit the uploaded image */
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.uploadText {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.uploadedImage {
+  max-width: 200px;
+  height: auto;
+  margin: 10px auto; /* Add margin for cleaner look */
+  display: block;
+}
+
+.captionTextArea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.uploadButton, .postButton {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.uploadButton:hover, .postButton:hover {
+  background-color: #0056b3;
+}
+
+.uploadStatus {
+  margin-top: 10px;
+  color: green;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.description {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  color: #555;
+}

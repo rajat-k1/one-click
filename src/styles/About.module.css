@@ -1,0 +1,68 @@
+/* src/styles/About.module.css */
+.container {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+  }
+  
+  .header p {
+    font-size: 1.2em;
+  }
+  
+  .team {
+    margin-bottom: 40px;
+  }
+  
+  .team h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .teamMembers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .member {
+    text-align: center;
+    margin: 20px;
+  }
+  
+  .avatar {
+    border-radius: 50%;
+  }
+  
+  .mission, .values {
+    margin-bottom: 40px;
+  }
+  
+  .mission h2, .values h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .values ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .footer p {
+    font-size: 1em;
+  }
+  
