@@ -8,7 +8,7 @@ import SavesChart from './SavesChart';       // New component
 import SharesChart from './SharesChart';     // New component
 import ViewsChart from './ViewsChart';       // New component
 import SidePane from './SidePane';
-
+import { SocialProvider } from '@/contexts/socialContext';
 export default function DashboardPage() {
   const postData = [
     ['1', 200],
@@ -46,6 +46,7 @@ export default function DashboardPage() {
   ];
 
   return (
+    
     <div style={{ display: 'grid', gridTemplateColumns: '250px auto', height: '100vh' }}>
     <SidePane />
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', padding: '20px' }}>
@@ -72,5 +73,6 @@ export default function DashboardPage() {
       </div>
     </div>
     </div>
+  
   );
 }
