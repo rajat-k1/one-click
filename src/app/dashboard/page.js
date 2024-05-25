@@ -1,5 +1,6 @@
 "use client";
 // src/app/dashboard/page.js
+import React, { useEffect, useState } from 'react';
 import FollowersChart from './FollowersChart';
 import NumberCounter from './NumberCounter';
 import LineChart from './LineChart';
@@ -9,6 +10,11 @@ import SharesChart from './SharesChart';     // New component
 import ViewsChart from './ViewsChart';       // New component
 import SidePane from './SidePane';
 import { SocialProvider } from '@/contexts/socialContext';
+import KpiCard from './KpiCard';
+import fetchAyrshareData from '../../utils/fetchAyrshareData';
+import './Dashboard.module.css'
+import AudienceByCityChart from './AudiencebyCitychart';
+
 export default function DashboardPage() {
   const postData = [
     ['1', 200],
@@ -17,12 +23,13 @@ export default function DashboardPage() {
     ['4', 230]
   ];
 
-  const postData1 = [
-    ['1', 324],
-    ['2', 33],
-    ['3', 245],
-    ['4', 23]
-  ];
+const postData1 = {
+    "Aj": 324,
+    "scfd": 33,
+    "dvrdf": 245,
+    "gef": 23,
+    "efe": 234
+};
 
   const postData2 = [
     ['1', 23],
@@ -45,34 +52,89 @@ export default function DashboardPage() {
     ['4', 230]
   ];
 
+  const likeCount = [50]
+  const impressionsCount = [50]
+  const commentsCount = [50]
+  const reachCount = [50]
+
+
+
+ /*   
+ ---------------------------------------------------------------------
+ LOGIC TO GET THE DATA FROM JSON OUTPUT INTO FRONT END OF THE APP
+
+ ---------------------------------------------------------------------
+  const [likeCount, setLikeCount] = useState(null);
+  const [impressionsCount, setImpressionsCount] = useState(null);
+  const [commentsCount, setCommentsCount] = useState(null);
+  const [reachCount, setReachCount] = useState(null);
+
+  useEffect(() => {
+      const getData = async () => {
+          const apiData = await fetchAyrshareData();
+          const likeCount = apiData.instagram.analytics.likeCount;
+          const impressionsCount = apiData.instagram.analytics.impressionsCount;
+          const commentsCount = apiData.instagram.analytics.commentsCount;
+          const reachCount = apiData.instagram.analytics.reachCount;
+          const audienceByCity = apiData.instagram.analytics.audienceCity;
+
+
+          setLikeCount(likeCount);
+          setImpressionsCount(impressionsCount);
+          setCommentsCount(commentsCount);
+          setReachCount(reachCount);
+          setAudienceByCity(audienceByCity);
+      };
+      getData();
+  }, []);
+
+  if (likeCount === null || impressionsCount === null || commentsCount === null || reachCount === null) {
+      return <p>Loading...</p>;
+  }
+
+  */
   return (
-    
     <div style={{ display: 'grid', gridTemplateColumns: '250px auto', height: '100vh' }}>
-    <SidePane />
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', padding: '20px' }}>
-      <div>
-        <FollowersChart />
-      </div>
-      <div>
-        <NumberCounter totalLikes={6982} />
-      </div>
-      <div>
-        <LineChart data={postData} />
-      </div>
-      <div>
-        <CommentsChart data={postData1} />
-      </div>
-      <div>
-        <SavesChart data={postData2} />
-      </div>
-      <div>
-        <SharesChart data={postData3} />
-      </div>
-      <div>
-        <ViewsChart data={postData4} />
+      <SidePane />
+      <div className="dashboard-container">
+        <div className="column">
+          <div className="column-title">
+            <img src='../../p' alt="Instagram Logo" />
+            <span>Instagram</span>
+          </div>
+          <div className="kpi-card-container">
+            <KpiCard title="Like Count" value={likeCount} />
+            <KpiCard title="Comment Count" value={commentsCount} />
+            <KpiCard title="Impression Count" value={impressionsCount} />
+            <KpiCard title="Reach Count" value={reachCount} />
+          </div>
+          <div>
+          <AudienceByCityChart data={postData1} />
+        </div>
+        </div>
       </div>
     </div>
-    </div>
-  
   );
 }
+
+/*
+<div>
+          <FollowersChart />
+        </div>
+        <div>
+          <NumberCounter totalLikes={6982} />
+        </div>
+        <div>
+          <LineChart data={postData} />
+        <div>
+          <CommentsChart data={postData1} />
+        </div>
+          <SavesChart data={postData2} />
+        </div>
+        <div>
+          <SharesChart data={postData3} />
+        </div>
+        <div>
+          <ViewsChart data={postData4} />
+        </div>
+*/

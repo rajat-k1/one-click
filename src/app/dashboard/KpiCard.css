@@ -1,0 +1,31 @@
+/* components/KpiCard.css */
+.kpi-card {
+    border: 1px solid #ccc;
+    border-radius: 16px; /* More rounded corners */
+    padding: 16px;
+    margin: 8px;
+    text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2), -3px -3px 10px rgba(255, 255, 255, 0.7); /* Embossed 3D effect */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+    width: 200px;
+}
+
+.kpi-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.kpi-card h3 {
+    margin: 0;
+    font-size: 1.2em;
+    color: #333; /* Title color */
+    font-family: 'Arial', sans-serif; /* Different font for creativity */
+}
+
+.kpi-card p {
+    margin: 8px 0 0;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #007BFF; /* Content color */
+    font-family: 'Courier New', Courier, monospace; /* Different font for creativity */
+}
