@@ -1,25 +1,25 @@
 "use client"; // This directive ensures the component is treated as a client component
 
-import React, { useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation'; // Import usePathname and useRouter
+import React, { useContext, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation'; // Use the correct import for the app directory
 import styles from '../../styles/SidePane.module.css'; // Ensure this path is correct
+import SocialContext from '@/contexts/socialContext';
+
+
 
 export default function SidePane() {
-    const [connections, setConnections] = useState({
-        facebook: false,
-        instagram: false,
-        twitter: false,
-        youtube: false,
-    });
+    const { connections, setConnections } = useContext(SocialContext);
 
     const router = useRouter();
     const pathname = usePathname(); // Get the current pathname
 
     const toggleConnection = (platform) => {
+
         setConnections(prevState => ({
             ...prevState,
             [platform]: !prevState[platform]
         }));
+        
     };
 
     const handleCreatePost = () => {
