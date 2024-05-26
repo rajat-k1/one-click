@@ -1,3 +1,4 @@
+import { Inter } from "next/font/google";
 // src/app/layout.js
 import Navigation from "../components/Navigation";
 import "./globals.css";
@@ -17,7 +18,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Navigation />
-        <main>{children}</main>
+        <SocialProvider><main>{children}</main></SocialProvider>
+        <Footer />
       </body>
     </html>
   );

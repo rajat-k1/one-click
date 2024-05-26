@@ -50,32 +50,33 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '250px auto', height: '100vh' }}>
-    <SidePane />
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', padding: '20px' }}>
-      <div>
-        <FollowersChart />
-      </div>
-      <div>
-        <NumberCounter totalLikes={6982} />
-      </div>
-      <div>
-        <LineChart data={postData} />
-      </div>
-      <div>
-        <CommentsChart data={postData1} />
-      </div>
-      <div>
-        <SavesChart data={postData2} />
-      </div>
-      <div>
-        <SharesChart data={postData3} />
-      </div>
-      <div>
-        <ViewsChart data={postData4} />
+    <div className={styles.dashboardContainer}>
+      <SidePane />
+      <div className={styles.mainContent}>
+        <div className={styles.chartsGrid}>
+          <div>
+            <FollowersChart />
+          </div>
+          <div>
+            <NumberCounter totalLikes={6982} />
+          </div>
+          <div>
+            <LineChart data={postData} />
+          </div>
+          <div>
+            <CommentsChart data={postData1} />
+          </div>
+          <div>
+            <SavesChart data={postData2} />
+          </div>
+          <div>
+            <SharesChart data={postData3} />
+          </div>
+          <div>
+            <ViewsChart data={postData4} />
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-  
   );
 }
