@@ -2,17 +2,18 @@
 
 .container {
   display: flex;
-  height: 100vh;
+  min-height: 100vh; /* Ensure the wrapper takes the full height of the viewport */
 }
 
 .mainContent {
-  flex: 1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #f0f0f0;
   padding: 20px;
+  overflow-y: auto; /* Ensure overflow is handled */
 }
 
 .title {
@@ -43,6 +44,7 @@
   border-radius: 5px;
   margin-bottom: 10px;
   overflow: hidden;
+  cursor: pointer; /* Make the iconFrame clickable */
 }
 
 .uploadText {
@@ -72,7 +74,7 @@
   gap: 10px;
 }
 
-.uploadButton, .postButton {
+.scheduleButton, .postButton, .generateContentButton {
   padding: 10px 20px;
   font-size: 1rem;
   font-weight: bold;
@@ -83,7 +85,7 @@
   cursor: pointer;
 }
 
-.uploadButton:hover, .postButton:hover {
+.scheduleButton:hover, .postButton:hover, .generateContentButton:hover {
   background-color: #0056b3;
 }
 
@@ -103,4 +105,22 @@
   margin-bottom: 10px;
   font-size: 1rem;
   color: #555;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack SidePane and mainContent on small screens */
+  }
+
+  .postBox {
+    width: 80%; /* Adjust width on small screens */
+  }
+
+  .mainContent {
+    padding: 10px;
+  }
+
+  .captionTextArea {
+    height: 80px; /* Adjust height on small screens */
+  }
 }

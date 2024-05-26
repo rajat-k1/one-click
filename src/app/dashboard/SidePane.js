@@ -1,7 +1,7 @@
 "use client"; // This directive ensures the component is treated as a client component
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Use the correct import for the app directory
+import { usePathname, useRouter } from 'next/navigation'; // Import usePathname and useRouter
 import styles from '../../styles/SidePane.module.css'; // Ensure this path is correct
 
 export default function SidePane() {
@@ -9,10 +9,11 @@ export default function SidePane() {
         facebook: false,
         instagram: false,
         twitter: false,
-        linkedin: false,
+        youtube: false,
     });
 
     const router = useRouter();
+    const pathname = usePathname(); // Get the current pathname
 
     const toggleConnection = (platform) => {
         setConnections(prevState => ({
@@ -52,16 +53,18 @@ export default function SidePane() {
                     className={connections.twitter ? styles.connected : styles.disconnected}
                 />
             </div>
-            <div className={styles.logo} onClick={() => toggleConnection('linkedin')}>
+            <div className={styles.logo} onClick={() => toggleConnection('youtube')}>
                 <img
-                    src="/images/linkedin-logo.png"
-                    alt="LinkedIn"
-                    className={connections.linkedin ? styles.connected : styles.disconnected}
+                    src="/images/youtube-logo.png"
+                    alt="YouTube"
+                    className={connections.youtube ? styles.connected : styles.disconnected}
                 />
             </div>
-            <button className={styles.createPostButton} onClick={handleCreatePost}>
-                Create Post
-            </button>
+            {pathname !== '/post' && (
+                <button className={styles.createPostButton} onClick={handleCreatePost}>
+                    Create Post
+                </button>
+            )}
         </div>
     );
 }

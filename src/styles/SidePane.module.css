@@ -4,7 +4,6 @@
     align-items: center;
     padding: 20px;
     background-color: #282c34; /* Background color for better contrast */
-    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -30,7 +29,7 @@
 
 .logo img {
     width: 50px; /* Adjust size as needed */
-    height: 50px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
     transition: all 0.3s ease; /* Smooth transition for effects */
 }
 

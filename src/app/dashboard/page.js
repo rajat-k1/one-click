@@ -1,13 +1,16 @@
-"use client";
 // src/app/dashboard/page.js
+"use client";
+
+import React from 'react';
 import FollowersChart from './FollowersChart';
 import NumberCounter from './NumberCounter';
 import LineChart from './LineChart';
-import CommentsChart from './CommentsChart'; // New component
-import SavesChart from './SavesChart';       // New component
-import SharesChart from './SharesChart';     // New component
-import ViewsChart from './ViewsChart';       // New component
+import CommentsChart from './CommentsChart';
+import SavesChart from './SavesChart';
+import SharesChart from './SharesChart';
+import ViewsChart from './ViewsChart';
 import SidePane from './SidePane';
+import styles from '../../styles/Dashboard.module.css';
 
 export default function DashboardPage() {
   const postData = [
@@ -46,31 +49,33 @@ export default function DashboardPage() {
   ];
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '250px auto', height: '100vh' }}>
-    <SidePane />
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', padding: '20px' }}>
-      <div>
-        <FollowersChart />
+    <div className={styles.dashboardContainer}>
+      <SidePane />
+      <div className={styles.mainContent}>
+        <div className={styles.chartsGrid}>
+          <div>
+            <FollowersChart />
+          </div>
+          <div>
+            <NumberCounter totalLikes={6982} />
+          </div>
+          <div>
+            <LineChart data={postData} />
+          </div>
+          <div>
+            <CommentsChart data={postData1} />
+          </div>
+          <div>
+            <SavesChart data={postData2} />
+          </div>
+          <div>
+            <SharesChart data={postData3} />
+          </div>
+          <div>
+            <ViewsChart data={postData4} />
+          </div>
+        </div>
       </div>
-      <div>
-        <NumberCounter totalLikes={6982} />
-      </div>
-      <div>
-        <LineChart data={postData} />
-      </div>
-      <div>
-        <CommentsChart data={postData1} />
-      </div>
-      <div>
-        <SavesChart data={postData2} />
-      </div>
-      <div>
-        <SharesChart data={postData3} />
-      </div>
-      <div>
-        <ViewsChart data={postData4} />
-      </div>
-    </div>
     </div>
   );
 }

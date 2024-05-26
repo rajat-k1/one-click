@@ -6,12 +6,14 @@ import Image from 'next/image';
 import axios from 'axios';
 import styles from '../../styles/PostPage.module.css';
 import SidePane from '../../app/dashboard/SidePane'; // Import the SidePane component
+import Modal from '../../components/Modal'; // Import the Modal component
 
 export default function PostPage() {
   const [caption, setCaption] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const handleUpload = async () => {
     const fileInput = document.createElement('input');
@@ -29,9 +31,13 @@ export default function PostPage() {
           const response = await axios.post('/api/imgur/upload', { image: base64String });
           setImageUrl(response.data.link);
           setUploadStatus('Image uploaded successfully!');
+          setShowModal(true);
+          setTimeout(closeModal, 3000); // Close modal after 3 seconds for success
         } catch (error) {
           console.error('Error uploading image:', error);
           setUploadStatus('Error uploading image.');
+          setShowModal(true);
+          setTimeout(closeModal, 3000); // Close modal after 5 seconds for error
         } finally {
           setIsUploading(false);
         }
@@ -77,13 +83,28 @@ export default function PostPage() {
     }
   };
 
+  const handleSchedule = () => {
+    // Placeholder for scheduling logic
+    console.log("Schedule button clicked");
+  };
+
+  const handleGenerateContent = () => {
+    // Placeholder for generate content logic
+    console.log("Generate Content button clicked");
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setUploadStatus('');
+  };
+
   return (
     <div className={styles.container}>
-      <SidePane /> {/* Add the SidePane component */}
+      <SidePane />
       <div className={styles.mainContent}>
         <h1 className={styles.title}>The Posting Page</h1>
         <div className={styles.postBox}>
-          <div className={styles.iconFrame}>
+          <div className={styles.iconFrame} onClick={handleUpload}>
             {imageUrl ? (
               <img src={imageUrl} alt="Uploaded" className={styles.uploadedImage} />
             ) : (
@@ -100,14 +121,21 @@ export default function PostPage() {
             onChange={(e) => setCaption(e.target.value)}
           />
           <div className={styles.buttonContainer}>
-            <button className={styles.uploadButton} onClick={handleUpload} disabled={isUploading}>
-              {isUploading ? 'Uploading...' : 'Upload Image'}
+            <button className={styles.scheduleButton} onClick={handleSchedule}>
+              Schedule
             </button>
             <button className={styles.postButton} onClick={handlePost}>
               Post
             </button>
+            <button className={styles.generateContentButton} onClick={handleGenerateContent}>
+              Generate Content
+            </button>
           </div>
-          {uploadStatus && <p className={styles.uploadStatus}>{uploadStatus}</p>}
+          {uploadStatus && (
+            <Modal show={showModal} onClose={closeModal}>
+              {uploadStatus}
+            </Modal>
+          )}
         </div>
         <div className={styles.footer}>
           <p className={styles.description}>Post to all your connected social media accounts with OneClick.</p>
