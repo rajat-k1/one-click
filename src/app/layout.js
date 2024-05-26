@@ -2,6 +2,7 @@
 import Navigation from "../components/Navigation";
 import "./globals.css";
 import { SocialProvider } from "@/contexts/socialContext";
+import { Inter } from '@next/font/google';
 
 const inter = Inter({ subsets: ["latin"] });
 import Footer from "../components/Footer"; // Import the Footer component
