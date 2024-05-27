@@ -9,6 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.3",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.6",
     "@auth0/nextjs-auth0": "^3.5.0",
     "@azure/storage-blob": "^12.18.0",
     "@next/font": "^14.2.3",
@@ -19,7 +24,10 @@
     "react": "^18",
     "react-dom": "^18",
     "twitter-api-v2": "^1.16.4",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "openai": "^4.19.1",
+    "react-markdown": "^9.0.0",
+    "zustand": "^4.3.8"
   },
   "devDependencies": {
     "eslint": "^8",

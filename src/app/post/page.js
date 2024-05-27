@@ -88,14 +88,14 @@ export default function PostPage() {
     try {
       const AYRSHARE_ACCESS_TOKEN = process.env.NEXT_PUBLIC_AYRSHARE_ACCESS_TOKEN;
       console.log(AYRSHARE_ACCESS_TOKEN);
-      const response = await fetch("https://app.ayrshare.com/api/post", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${AYRSHARE_ACCESS_TOKEN}`,
-        },
-        body: JSON.stringify(payload),
-      });
+      // const response = await fetch("https://app.ayrshare.com/api/post", {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': `Bearer ${AYRSHARE_ACCESS_TOKEN}`,
+      //   },
+      //   body: JSON.stringify(payload),
+      // });
 
       if (!response.ok) {
         const errorData = await response.json();
