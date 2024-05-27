@@ -50,9 +50,9 @@ const AudienceByCityChart = ({ data }) => {
     }, [data]);
 
     return (
-        <div>
+        <div className="chart-container">
             <div className="chart-title">Top 5 Cities by Audience Count</div>
-            <div id="audience_by_city_chart" style={{ width: '40%', height: '100%' }}></div>
+            <div id="audience_by_city_chart" className="chart"></div>
         </div>
     );
 };

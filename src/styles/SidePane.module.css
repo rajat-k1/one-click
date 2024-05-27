@@ -1,4 +1,7 @@
+/* src/styles/SidePane.module.css */
+
 .container {
+    width: 250px; /* Ensure this is consistent across all pages */
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -90,23 +90,42 @@ export default function DashboardPage() {
   }
   */
 
+
+  const platforms = [
+    { name: 'Instagram', logo: '../images/instagram-logo.png' },
+    { name: 'Facebook', logo: '../images/facebook-logo.png' },
+    { name: 'Twitter', logo: '../images/twitter-logo.png' },
+    { name: 'YouTube', logo: '../images/youtube-logo.png' },
+  ];
+
+
   return (
     <div className={styles.dashboardContainer}>
       <SidePane />
       <div className={styles.mainContent}>
-        <div className={styles.column}>
-          <div className={styles.columnTitle}>
-            <img src='../../p' alt="Instagram Logo" />
-            <span>Instagram</span>
+        {platforms.map((platform, index) => (
+          <div key={index} className={styles.kpiContainer}>
+            <div className={styles.columnTitle}>
+              <img 
+                src={platform.logo} 
+                alt={`${platform.name} Logo`} 
+                className={styles.platformLogo} 
+              />
+              <span>{platform.name} </span>
+            </div>
+            <div className={styles.kpiContent}>
+              <div className={styles.kpiGrid}>
+                <KpiCard title="Like Count" value={likeCount} />
+                <KpiCard title="Comment Count" value={commentsCount} />
+                <KpiCard title="Impression Count" value={impressionsCount} />
+                <KpiCard title="Reach Count" value={reachCount} />
+              </div>
+              <div className={styles.audienceChartContainer}>
+                <AudienceByCityChart data={postData1} />
+              </div>
+            </div>
           </div>
-          <div className={styles.kpiCardContainer}>
-            <KpiCard title="Like Count" value={likeCount} />
-            <KpiCard title="Comment Count" value={commentsCount} />
-            <KpiCard title="Impression Count" value={impressionsCount} />
-            <KpiCard title="Reach Count" value={reachCount} />
-          </div>
-          <AudienceByCityChart data={postData1} />
-        </div>
+        ))}
       </div>
     </div>
   );

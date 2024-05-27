@@ -1,8 +1,8 @@
-/* components/ChartVisual.css */
+/* components/ChartVisuals.css */
 .chart-container {
-    width: 80%; /* Adjust the width as needed */
-    height: 300px; /* Adjust the height as needed */
-    margin: 20px auto;
+    width: 100%; /* Ensure the chart container takes full width */
+    height: auto; /* Adjust the height as needed */
+    margin: 20px 0; /* Adjust the margin as needed */
     background-color: #1a1a1a;
     border-radius: 16px;
     padding: 16px;
@@ -15,4 +15,9 @@
     font-size: 1.5em;
     margin-bottom: 16px;
     color: #fff; /* Title color */
+}
+
+.chart {
+    width: 100% !important; /* Ensure the chart itself takes full width */
+    height: 300px; /* Set a fixed height for the chart */
 }

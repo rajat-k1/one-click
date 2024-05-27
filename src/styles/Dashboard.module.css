@@ -2,76 +2,33 @@
 
 .dashboardContainer {
   display: flex;
-  min-height: 100vh; /* Ensure the wrapper takes the full height of the viewport */
-  flex-direction: row; /* Default to row layout */
+  flex-direction: row;
 }
 
 .sidebar {
   width: 250px;
   flex-shrink: 0;
+  background-color: #1a1a1a;
 }
 
 .mainContent {
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-  overflow-y: auto; /* Ensure overflow is handled */
-}
-
-.chartsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
 }
 
-@media (max-width: 1200px) {
-  .chartsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .dashboardContainer {
-    flex-direction: column; /* Switch to column layout on small screens */
-  }
-
-  .sidebar {
-    width: 100%;
-    order: 1;
-  }
-
-  .mainContent {
-    order: 2;
-    padding: 10px;
-  }
-
-  .chartsGrid {
-    grid-template-columns: 1fr; /* Single column grid on small screens */
-  }
-}
-
-.dashboard-container {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px;
-  background-color: #000;
-  height: 100vh;
-}
-
-.column {
+.kpiContainer {
   background-color: #1a1a1a;
   border-radius: 16px;
   padding: 16px;
-  width: 20%;
-  text-align: center;
   color: #fff;
+  border: 2px solid #007BFF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 2px solid #007BFF; /* Add border to the column */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for 3D effect */
 }
 
 .columnTitle {
@@ -79,21 +36,47 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  color: #fff;
   font-size: 1.5em;
   border-bottom: 2px solid #fff;
   width: 100%;
   padding-bottom: 8px;
+  color: #fff;
 }
 
-.columnTitle img {
-  width: 40px;
-  height: 40px;
-  margin-right: 8px;
+.platformLogo {
+  width: auto; /* Maintain natural width */
+  height: 40px; /* Keep the height consistent */
+  margin-right: 8px; /* Add some space between the logo and the text */
 }
 
-.kpiCardContainer {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px;
+.kpiContent {
+  width: 100%;
+}
+
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Create a 2x2 grid */
+  gap: 20px;
+  width: 100%; /* Ensure grid takes full width */
+}
+
+.audienceChartContainer {
+  width: 100%; /* Ensure chart takes full width */
+  margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+  .mainContent {
+    grid-template-columns: 1fr 1fr; /* Adjust to 2x2 grid on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContent {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+  }
+
+  .kpiGrid {
+    grid-template-columns: 1fr; /* Single column for KPI grid on smaller screens */
+  }
 }

@@ -22,7 +22,6 @@ export default function PostPage() {
     days: [], // Array of days like ['Monday', 'Wednesday']
     time: '' // Time in UTC format
   });
-  // console.log(connections);
   const [showModal, setShowModal] = useState(false);
 
   const handleUpload = async () => {
@@ -40,17 +39,12 @@ export default function PostPage() {
         const base64String = reader.result.split(',')[1];
         const fileType = file.type;
         console.log(fileType.split('/'));
-        // console.log('Base64Image: ',base64Image);
         try {
           const response = await fetch('/api/upload', {
-  
             method: 'POST',
-            
             body: JSON.stringify({ fileType, base64String }),
-            
-            });
+          });
           const data = await response.json();
-          // console.log('Filename:', data.fileName);
           setmediaUrl(`https://oneclickcapstone.blob.core.windows.net/user-uploads/${data.fileName}`);
           setUploadStatus('Media uploaded successfully!');
         } catch (error) {
@@ -64,22 +58,18 @@ export default function PostPage() {
     fileInput.click();
   };
 
-
-
   const handlePost = async () => {
-    
     const activePlatforms = Object.entries(connections)
-    .filter(([key, value]) => value === true)
-    .map(([key, value]) => key);
+      .filter(([key, value]) => value === true)
+      .map(([key, value]) => key);
 
-    // console.log(activePlatforms);
     if (!mediaUrl) {
       console.error("No image URL available for posting.");
       return;
     }
     const payload = {
       post: caption,
-      mediaUrls: [mediaUrl], // Use the mediaUrl state
+      mediaUrls: [mediaUrl],
       platforms: activePlatforms
     };
 
@@ -87,7 +77,6 @@ export default function PostPage() {
 
     try {
       const AYRSHARE_ACCESS_TOKEN = process.env.NEXT_PUBLIC_AYRSHARE_ACCESS_TOKEN;
-      console.log(AYRSHARE_ACCESS_TOKEN);
       const response = await fetch("https://app.ayrshare.com/api/post", {
         method: 'POST',
         headers: {
@@ -111,19 +100,17 @@ export default function PostPage() {
   };
 
   const handleSchedule = async () => {
-    
     const activePlatforms = Object.entries(connections)
-    .filter(([key, value]) => value === true)
-    .map(([key, value]) => key);
+      .filter(([key, value]) => value === true)
+      .map(([key, value]) => key);
 
-    // console.log(activePlatforms);
     if (!mediaUrl) {
       console.error("No image URL available for posting.");
       return;
     }
     const payload = {
       post: caption,
-      mediaUrls: [mediaUrl], // Use the mediaUrl state
+      mediaUrls: [mediaUrl],
       platforms: activePlatforms
     };
 
@@ -138,7 +125,6 @@ export default function PostPage() {
       //   },
       //   body: JSON.stringify(payload),
       // });
-
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Error data:', errorData);
@@ -151,7 +137,6 @@ export default function PostPage() {
       console.error('Server Error:', error);
     }
   };
-  // console.log(connections);
 
   const handleGenerateContent = () => {
     // Placeholder for generate content logic
@@ -166,7 +151,7 @@ export default function PostPage() {
 
   return (
     <div className={styles.container}>
-      <SidePane />
+      <SidePane className={styles.sidebar} />
       <div className={styles.mainContent}>
         <h1 className={styles.title}>The Posting Page</h1>
         <div className={styles.postBox}>

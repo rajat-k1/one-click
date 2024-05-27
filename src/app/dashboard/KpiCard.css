@@ -2,13 +2,13 @@
 .kpi-card {
     border: 1px solid #ccc;
     border-radius: 16px; /* More rounded corners */
-    padding: 16px;
-    margin: 8px;
+    padding: 8px;
+    margin: 4px;
     text-align: center;
     background-color: #f9f9f9;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2), -3px -3px 10px rgba(255, 255, 255, 0.7); /* Embossed 3D effect */
     transition: transform 0.2s ease-in-out; /* Smooth hover effect */
-    width: 200px;
+    width: 140px;
 }
 
 .kpi-card:hover {
