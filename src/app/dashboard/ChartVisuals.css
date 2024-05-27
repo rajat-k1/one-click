@@ -1,0 +1,18 @@
+/* components/ChartVisual.css */
+.chart-container {
+    width: 80%; /* Adjust the width as needed */
+    height: 300px; /* Adjust the height as needed */
+    margin: 20px auto;
+    background-color: #1a1a1a;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff; /* Ensure text color is white for better readability */
+}
+
+.chart-title {
+    text-align: left;
+    font-size: 1.5em;
+    margin-bottom: 16px;
+    color: #fff; /* Title color */
+}
