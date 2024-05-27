@@ -74,7 +74,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow for 3D effect */
 }
 
-.column-title {
+.columnTitle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,8 +86,14 @@
   padding-bottom: 8px;
 }
 
-.column-title img {
+.columnTitle img {
   width: 40px;
   height: 40px;
   margin-right: 8px;
+}
+
+.kpiCardContainer {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
 }
