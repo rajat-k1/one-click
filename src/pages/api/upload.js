@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 
 
 
-
+    try{
     // Get your connection string from env variables or other secure sources
 
     const AZURE_STORAGE_CONNECTION_STRING = process.env.AZURE_STORAGE_CONNECTION_STRING;
@@ -50,7 +50,7 @@ export default async function handler(req, res) {
     const fileExtension = fileType.split('/')[1];       
     // Create a blob (file) name
     blobName = `${Date.now()}.${fileExtension}`;
-
+    // console.log('ARGS',fileType,base64String);
     const blockBlobClient = containerClient.getBlockBlobClient(blobName);
 
 
@@ -64,6 +64,10 @@ export default async function handler(req, res) {
 
     // res.status(200).send(`Upload block blob ${blobName} successfully: ${uploadBlobResponse.requestId}`);
     res.status(200).json({ fileName: blobName, uploadBlobResponse: uploadBlobResponse, message: 'SENT' });
+    }catch (error){
+        console.error(error)
+        res.status(500).json({ message: `${error}`});
+    }
     // return new Response('Working');
 }
 

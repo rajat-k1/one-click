@@ -7,15 +7,20 @@ import axios from 'axios';
 import styles from '../../styles/PostPage.module.css';
 import SidePane from '../../app/dashboard/SidePane'; // Import the SidePane component
 import SocialContext from '@/contexts/socialContext';
+import { useRouter } from 'next/navigation'; // Use the correct import for the app directory
+import useAppStore from '../../stores/appstore'
 
 import Modal from '../../components/Modal'; // Import the Modal component
 
 export default function PostPage() {
+  const router = useRouter();
   const [caption, setCaption] = useState('');
-  const [mediaUrl, setmediaUrl] = useState('');
+  // const [mediaUrl, setmediaUrl] = useState('');
   const [isUploading, setIsUploading] = useState(false);
   const [uploadStatus, setUploadStatus] = useState('');
-  const { connections, setConnections } = useContext(SocialContext);
+  // const {  connections, setConnections, mediaUrl, setmediaUrl  } = useContext(SocialContext);
+  const {darkMode, setMode, mediaUrl, setmediaUrl, connections, setConnections } = useAppStore();
+
   const [scheduleType, setScheduleType] = useState('once'); // 'once' or 'custom'
   const [scheduleTime, setScheduleTime] = useState(''); // For one-time schedule
   const [customSchedule, setCustomSchedule] = useState({
@@ -46,6 +51,7 @@ export default function PostPage() {
           });
           const data = await response.json();
           setmediaUrl(`https://oneclickcapstone.blob.core.windows.net/user-uploads/${data.fileName}`);
+          console.log('MediaURL',mediaUrl);
           setUploadStatus('Media uploaded successfully!');
         } catch (error) {
           console.error('Error uploading media:', error);
@@ -63,6 +69,7 @@ export default function PostPage() {
       .filter(([key, value]) => value === true)
       .map(([key, value]) => key);
 
+    console.log(activePlatforms);
     if (!mediaUrl) {
       console.error("No image URL available for posting.");
       return;
@@ -117,14 +124,15 @@ export default function PostPage() {
     console.log('Sending payload:', JSON.stringify(payload));
 
     try {
-      // const response = await fetch("https://app.ayrshare.com/api/post", {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': 'Bearer ' + process.env.AYRSHARE_ACCESS_TOKEN,
-      //   },
-      //   body: JSON.stringify(payload),
-      // });
+      const response = await fetch("https://app.ayrshare.com/api/post", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + process.env.AYRSHARE_ACCESS_TOKEN,
+        },
+        body: JSON.stringify(payload),
+      });
+
       if (!response.ok) {
         const errorData = await response.json();
         console.error('Error data:', errorData);
@@ -140,7 +148,7 @@ export default function PostPage() {
 
   const handleGenerateContent = () => {
     // Placeholder for generate content logic
-    console.log("Generate Content button clicked");
+    router.push('/genAI');
   };
 
   const closeModal = () => {
