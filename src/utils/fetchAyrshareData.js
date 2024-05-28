@@ -8,7 +8,7 @@ async function fetchAyrshareData() {
             'Authorization': `Bearer ${process.env.NEXT_PUBLIC_AYRSHARE_ACCESS_TOKEN}`,
           },
         body: JSON.stringify({
-            'platforms': ['instagram', 'facebook'] // Add platforms array to the body
+            'platforms': ['instagram', 'facebook', 'twitter', 'youtube'] // Add platforms array to the body
         })
     });
     const data = await response.json();

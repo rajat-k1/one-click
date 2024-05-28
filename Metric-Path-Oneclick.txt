@@ -1,0 +1,66 @@
+FACEBOOK
+-----------------------------------------------------------------------------
+"pageImpressions": 25,
+"pageFanAdds": 1,
+"pageFanRemoves": 0,
+"pageImpressionsPaid": 0,
+"reactions": {
+                "like": 7,
+                "love": 0,
+                "wow": 0,
+                "haha": 0,
+                "sorry": 0,
+                "anger": 0,
+                "total": 7
+            },
+"pageVideoViewsByPaidNonPaid": {
+                "total": 1,
+                "unpaid": 1,
+                "paid": 0
+            },
+------------------------------------------------------------------
+
+Instagram: Top5 (overall)
+ "audienceGenderAge": {
+                "F.13-17": 1,
+                "F.18-24": 14,
+                "F.25-34": 21,
+                "F.35-44": 10,
+                "F.45-54": 3,
+                "F.55-64": 3,
+                "M.13-17": 5,
+                "M.18-24": 151,
+                "M.25-34": 434,
+                "M.35-44": 287,
+                "M.45-54": 129,
+                "M.55-64": 45,
+                "M.65+": 31,
+                "U.13-17": 7,
+                "U.18-24": 75,
+                "U.25-34": 133,
+                "U.35-44": 93,
+                "U.45-54": 27,
+                "U.55-64": 15,
+                "U.65+": 10
+            },
+
+--------------------------------------------------------------------------------
+Twitter
+
+ "followersCount": 0,
+            "followingCount": 1,
+"listedCount": 0,
+"tweetCount": 2,
+
+------------------------------------------------------------------------------
+
+Youtube
+"averageViewDuration": 82,
+ "averageViewPercentage": 34.22,
+ "likes": 0,
+"dislikes": 0,
+"comments": 0,
+"shares": 1,
+"viewCount": 26,
+"views": 26
+
