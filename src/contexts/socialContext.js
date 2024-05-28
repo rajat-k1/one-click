@@ -10,6 +10,8 @@ const SocialContext = createContext({
     linkedin: false,
   },
   setConnections: () => {},
+  mediaUrl: '',
+  setmediaUrl: (mediaUrl) => set({mediaUrl})
 });
 
 export const SocialProvider = ({ children }) => {
@@ -20,10 +22,10 @@ export const SocialProvider = ({ children }) => {
     linkedin: false,
   });
   
-
+  const [mediaUrl, setmediaUrl] = useState('');
 
   return (
-    <SocialContext.Provider value={{ connections, setConnections }}>
+    <SocialContext.Provider value={{ connections, setConnections, mediaUrl, setmediaUrl }}>
       {children}
     </SocialContext.Provider>
   );

@@ -8,6 +8,8 @@ import create_image_dalle from '../../assets/create_image_dall-e.json'
 import get_image_for_analysis from '../../assets/get_image_for_analysis.json'
 //import get_image_info from '../../assets/get_image_info.json'
 import captions from '../../assets/captions.json'
+import { Oregano } from '@next/font/google'
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const streamPipeline = promisify(pipeline)
 
@@ -78,7 +80,8 @@ const useVision = async (args, inquiry = '', context = []) => {
 
         result_output = {
             status: 'success',
-            message: result.message.content
+            message: result.message.content,
+            base64: image_base64
         }
         
     } catch(error) {
@@ -145,7 +148,7 @@ const useDalle = async (args, lang = 0) => {
 
             const data_response = await fetch(img.url)
 
-            console.log(img.url)
+            console.log('DALL E',img.url)
 
             try {
 
@@ -171,25 +174,30 @@ const useDalle = async (args, lang = 0) => {
     return image_list.length > 0 ? { 
         status: 'image generated',
         message: image_list.length > 1 ? captions.done_here_are_the_images[lang] : captions.done_here_is_the_image[lang], 
-        images: image_list 
+        images: image_list,
+
     } : { error: true, status: 'image creation error', message: 'There is a problem creating your image' }
 
 }
 
-export default async function POST(request) {
-    console.log(request.body);
-    const { lang = 0, inquiry, previous, image } = await request.body;
+export default async function handler(req,res) {
 
+    console.log(req);
+    if (req.method !== 'POST') {
+        return res.status(405).json({ message: 'Method Not Allowed' });
+    }
+
+    const { lang = 0, inquiry, previous, image } = req.body;
+
+    // console.log(inquiry, previous)
     if (!inquiry || !Array.isArray(previous)) {
-        return new Response('Bad request', {
-            status: 400,
-        })
+        return res.status(400).json({ message: 'Bad Request'});
     }
 
     let prev_data = trim_array(previous, 20)
 
     let isImageExist = image && Array.isArray(image) && image.length > 0
-
+    
     const tools = [
         { type: 'function', function: create_image_dalle },
         { type: 'function', function: get_image_for_analysis },
@@ -354,7 +362,7 @@ export default async function POST(request) {
         }
 
     }
-
+    return res.status(200).json({ result: result.message});
     return new Response(JSON.stringify({
         result: result.message,
     }), {

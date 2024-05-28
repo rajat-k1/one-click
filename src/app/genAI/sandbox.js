@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useContext, useState } from 'react'
 
 import { createPortal } from 'react-dom'
 
@@ -28,7 +28,11 @@ import Loader from '../../components/loader'
 import useDarkMode from '../../lib/usedarkmode'
 import useCaption from '../../lib/usecaption'
 import captions from '../../assets/captions.json'
-//import useAppStore from '../stores/appstore'
+import useAppStore from '../../stores/appstore'
+import Button from '@mui/material/Button';
+import { useRouter } from 'next/navigation'; // Use the correct import for the app directory
+import SocialContext from '@/contexts/socialContext';
+
 
 import { welcome_greeting, getSimpleId, compact, formatTextQuickDirty, truncateText } from '../../lib/utils'
 
@@ -37,9 +41,12 @@ import classes from './sandbox.module.css'
 const Sandbox = () => {
 
     useDarkMode()
-
+    const router = useRouter();
+    const [base64String, setbase64String] = useState('');
+    // const { connections, setConnections, mediaUrl, setmediaUrl } = useContext(SocialContext);
+    const {darkMode, setMode, mediaUrl, setmediaUrl, connections, setConnections } = useAppStore();
     const [lang, setCaption] = useCaption(captions)
-
+    
     const fileRef = React.useRef(null)
     const inputRef = React.useRef(null)
     const messageRef = React.useRef(null)
@@ -48,11 +55,12 @@ const Sandbox = () => {
 
     const [inputFocus, setInputFocus] = React.useState(false)
     const [previewImage, setPreviewImage] = React.useState([])
-    
+    // const [mediaUrl, setmediaUrl] = React.useState('')
     const [inputText, setInputText] = React.useState('')
     const [messageItems, setMessageItems] = React.useState([])
     const [isProcessing, setProcessing] = React.useState(false)
     const [isLoading, setLoading] = React.useState(false)
+    let imageURL = '';
     
     React.useEffect(() => {
 
@@ -140,6 +148,7 @@ const Sandbox = () => {
                 })
             )
             uploaded_files = compact(uploaded_files)
+            imageURL = uploaded_files[0].url;
             
             const image_markdown = uploaded_files.map((img) => {
                 return `![${img.alt}](${img.url} "${img.id}")\n`
@@ -161,12 +170,7 @@ const Sandbox = () => {
         resetScroll()
 
         try {
-            console.log(JSON.stringify({
-                lang,
-                inquiry,
-                previous,
-                image: newUserItem.image && Array.isArray(newUserItem.image) && newUserItem.image.length > 0 ? newUserItem.image : [],
-            }));
+
             const response = await fetch('/api/route', {
                 method: 'POST',
                 headers: {
@@ -180,17 +184,17 @@ const Sandbox = () => {
                     image: newUserItem.image && Array.isArray(newUserItem.image) && newUserItem.image.length > 0 ? newUserItem.image : [],
                 })
             })
-            console.log(response);
+            
             if(!response.ok) {
                 console.log('From api/route')
                 console.log('Oops, an error occurred', response.status)
             }
-
+            console.log(response);
             const ret = await response.json()
             
             console.log("received response...", (new Date()).toLocaleTimeString())
-            console.log(ret)
-
+            // console.log('IMAGE RETURNED',ret.result.image)
+            
             let text = ret.result.content || setCaption('unexpected_error')
             
             let newAssistantItem = {
@@ -209,7 +213,7 @@ const Sandbox = () => {
                     url: img.url,
                     alt: truncateText(img.alt),
                 }))
-
+                
                 const output_image_markdown = newAssistantItem.image.map((img) => {
                     return `![${img.alt}](${img.url} "${img.id}")\n`
                 })
@@ -217,7 +221,7 @@ const Sandbox = () => {
                 newAssistantItem.content = newAssistantItem.content + '\n\n' + output_image_markdown
 
             }
-
+            
             setMessageItems((prev) => [...prev, ...[newAssistantItem]])
             
         } catch(error) {
@@ -353,6 +357,104 @@ const Sandbox = () => {
         setInputText('')
 
     }
+
+    const getBase64img = async () => {
+        try{ 
+            const url = messageItems[messageItems.length -1].image[0].url;
+            // console.log(url)
+            const response = await fetch('/api/getBase64img',{
+                method: 'POST',
+                body: JSON.stringify({ url }),
+            });
+            if (!response.ok) {
+                throw new Error('Failed to get base64 image');
+            }
+            const data = await response.json();
+            const base64 = data.base64img;
+            // console.log(base64)
+            setbase64String(base64);
+            return [url, base64];
+        }
+        catch(error){
+            console.log('Error getting base64 ', error)
+        }
+    }
+
+    const uploadAzure = async (fileType, base64String) => {
+        try{
+            const azureRes = await fetch('/api/upload', {
+        
+                method: 'POST',
+                
+                body: JSON.stringify({ fileType, base64String }),
+                
+                });
+    
+            if (!azureRes.ok) {
+                throw new Error('Failed to upload image');
+                }    
+            const azureData = await azureRes.json();
+            // console.log('azureData', azureData);
+            const azureMediaUrl = `https://oneclickcapstone.blob.core.windows.net/user-uploads/${azureData.fileName}`;
+            setmediaUrl(azureMediaUrl);
+            return azureMediaUrl
+        }
+        catch(error){
+            console.log('Error from uploadAzure ', error);
+        }
+    }
+
+    const handleUseThis = async () => {
+        try{
+        const [url, base64String] = await getBase64img();
+        // console.log(base64);
+        const fileType = 'image/' + url.split('.').slice(-1)[0];
+        console.log('before azure',fileType, base64String);
+        
+
+        const azureMediaUrl = await uploadAzure(fileType, base64String);
+        console.log('Azure URL', azureMediaUrl);
+        
+        router.push('/post');
+
+            } catch (error) {
+            console.error('Error useThis:', error);
+            //   setUploadStatus('Error uploading media.');
+            } finally {
+            //   setIsUploading(false);
+                
+            }
+
+              
+    
+
+    }
+
+
+    
+    const uploadToAzure = async (fileType, base64) => {
+        try {
+            const response = await fetch('/api/upload', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ fileType, base64 }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                setmediaUrl(`https://oneclickcapstone.blob.core.windows.net/user-uploads/${data.fileName}`);
+                console.log('Azure URL', mediaUrl);
+            } else {
+                console.error('Error uploading media:', data.message);
+            }
+        } catch (error) {
+            console.error('Error uploading media:', error);
+        }
+    };
 
     const classBorderline = inputFocus ? classes.selected : classes.default
 
@@ -518,6 +620,8 @@ const Sandbox = () => {
                                 endAdornment: (
                                     <InputAdornment position='end'>
                                         <React.Fragment>
+                                        <Button variant="outlined" onClick={handleUseThis}>Use this</Button>
+
                                             <IconButton
                                             disabled={isProcessing || inputText.length === 0}
                                             onClick={handleClear}

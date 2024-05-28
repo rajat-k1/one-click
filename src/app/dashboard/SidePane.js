@@ -4,25 +4,34 @@ import React, { useContext, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation'; // Use the correct import for the app directory
 import styles from '../../styles/SidePane.module.css'; // Ensure this path is correct
 import SocialContext from '@/contexts/socialContext';
+import useAppStore from '@/stores/appstore';
 
 
 
 export default function SidePane() {
-    const { connections, setConnections } = useContext(SocialContext);
+    // const { connections, setConnections } = useContext(SocialContext);
+    const {darkMode, setMode, mediaUrl, setmediaUrl, connections, setConnections } = useAppStore();
 
     const router = useRouter();
     const pathname = usePathname(); // Get the current pathname
 
     const toggleConnection = (platform) => {
-
-        setConnections(prevState => ({
-            ...prevState,
-            [platform]: !prevState[platform]
-        }));
+        const conn = {
+            ...connections,
+            [platform]: !connections[platform]
+        }
+        setConnections(conn);
         
     };
 
     const handleCreatePost = () => {
+        const conn = {
+            facebook: false,
+            instagram: false,
+            twitter: false,
+            linkedin: false,
+        }
+        setConnections(conn)
         router.push('/post');
     };
 
