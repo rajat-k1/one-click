@@ -52,20 +52,21 @@ export default function DashboardPage() {
     ['4', 230]
   ];
 
-  const likeCount = [50];
-  const impressionsCount = [50];
-  const commentsCount = [50];
-  const reachCount = [50];
+  // const likeCount = [50];
+  // const impressionsCount = [50];
+  // const commentsCount = [50];
+  // const reachCount = [50];
 
-  /*   
-  ---------------------------------------------------------------------
-  LOGIC TO GET THE DATA FROM JSON OUTPUT INTO FRONT END OF THE APP
+  
+  // ---------------------------------------------------------------------
+  // LOGIC TO GET THE DATA FROM JSON OUTPUT INTO FRONT END OF THE APP
 
-  ---------------------------------------------------------------------
+  // ---------------------------------------------------------------------
   const [likeCount, setLikeCount] = useState(null);
   const [impressionsCount, setImpressionsCount] = useState(null);
   const [commentsCount, setCommentsCount] = useState(null);
   const [reachCount, setReachCount] = useState(null);
+  const [audienceByCity, setAudienceByCity] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -88,7 +89,7 @@ export default function DashboardPage() {
   if (likeCount === null || impressionsCount === null || commentsCount === null || reachCount === null) {
     return <p>Loading...</p>;
   }
-  */
+  
 
 
   const platforms = [
