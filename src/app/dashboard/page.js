@@ -211,7 +211,7 @@ export default function DashboardPage() {
           <div className={styles.kpiContent}>
             <div className={styles.kpiGrid}>
               <KpiCard title="Page Impressions" value={facebookpageImpressions} />
-              <KpiCard title="Page Fan Ads" value={facebookpageFanAdds} />
+              <KpiCard title="Page Fan Additions" value={facebookpageFanAdds} />
               <KpiCard title="Page Fan Removes" value={facebookpageFanRemoves} />
               <KpiCard title="Page Impressions Paid" value={facebookpageImpressionsPaid} />
             </div>
@@ -257,7 +257,7 @@ export default function DashboardPage() {
           <div className={styles.kpiContent}>
             <div className={styles.kpiGrid}>
               <KpiCard title="Avg view duration" value={youtubeaverageViewDuration} />
-              <KpiCard title="Avg view %" value={youtubeaverageViewPercentage} />
+              <KpiCard title="Avg view %" value={youtubeaverageViewPercentage.toFixed(2)} />
               <KpiCard title="Likes" value={youtubelikes} />
               <KpiCard title="Dislikes" value={youtubedislikes} />
               <KpiCard title="Comments" value={youtubecomments} />

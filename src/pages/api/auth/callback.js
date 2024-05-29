@@ -3,7 +3,7 @@ import auth0 from '../../../../src/utils/auth0';
 
 export default async function callback(req, res) {
   try {
-    await auth0.handleCallback(req, res, { redirectTo: '/psdfff' });
+    await auth0.handleCallback(req, res, { redirectTo: '/dashboard' });
     console.log('routed')
   } catch (error) {
     console.error(error);

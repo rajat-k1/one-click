@@ -13,6 +13,7 @@ export const metadata = {
   description: "One-Click Social Media Analytics and Management Platform",
 };
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
