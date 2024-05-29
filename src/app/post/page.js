@@ -69,6 +69,8 @@ export default function PostPage() {
       .filter(([key, value]) => value === true)
       .map(([key, value]) => key);
 
+    
+
     console.log(activePlatforms);
     if (!mediaUrl) {
       console.error("No image URL available for posting.");
@@ -77,7 +79,11 @@ export default function PostPage() {
     const payload = {
       post: caption,
       mediaUrls: [mediaUrl],
-      platforms: activePlatforms
+      platforms: activePlatforms,
+      youTubeOptions: {
+        title: caption,
+        visibility: "public"                // required: Video Title, max 100 characters. Must be 100 characters or less.
+      }
     };
 
     console.log('Sending payload:', JSON.stringify(payload));
