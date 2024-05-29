@@ -91,6 +91,7 @@ export default function PostPage() {
     try {
       const AYRSHARE_ACCESS_TOKEN = process.env.NEXT_PUBLIC_AYRSHARE_ACCESS_TOKEN;
       const response = await fetch("https://app.ayrshare.com/api/post", {
+        mode: 'cors',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
